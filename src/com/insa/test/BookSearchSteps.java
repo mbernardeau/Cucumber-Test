@@ -29,7 +29,7 @@ public class BookSearchSteps {
 	public void setSearchParameters(@Format("yyyy") final Date from, @Format("yyyy") final Date to) {
 		result = library.findBooks(from, to);
 	}
- 
+	
 	@Then("(\\d+) books should have been found$")
 	public void verifyAmountOfBooksFound(final int booksFound) {
 		assertThat(result.size(), equalTo(booksFound));
@@ -39,4 +39,10 @@ public class BookSearchSteps {
 	public void verifyBookAtPosition(final int position, final String title) {
 		assertThat(result.get(position - 1).getTitle(), equalTo(title));
 	}
+	
+	@When("^the customer searches for books written by '(.+)'$")
+	public void setSearchParametersAuthor(final String author) {
+		result = library.findBooks(author);
+	}
+	
 }

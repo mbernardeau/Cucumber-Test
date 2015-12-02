@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Library {
@@ -22,5 +23,9 @@ public class Library {
 		return store.stream().filter(book -> {
 			return from.before(book.getPublished()) && end.getTime().after(book.getPublished());
 		}).sorted(Comparator.comparing(Book::getPublished).reversed()).collect(Collectors.toList());
+	}
+	
+	public List<Book> findBooks(final String author){
+		return store.stream().filter(book -> {return book.getAuthor().equals(author);}).collect(Collectors.toList());
 	}
 }
