@@ -1,17 +1,26 @@
-Feature: Book search
-  To allow a customer to find his favourite books quickly, the library must offer multiple ways to search for a book.
+# language: fr
+# encoding: utf-8
+Fonctionnalité: Recherche de cours
+
  
-  Scenario: Search books by publication year
-    Given a book with the title 'One good book', written by 'Anonymous', published in 14 March 2013
-      And another book with the title 'Some other book', written by 'Tim Tomson', published in 23 August 2014
-      And another book with the title 'How to cook a dino', written by 'Fred Flintstone', published in 01 January 2012
-      And also a super book with the title 'CCU for Dummies', written by 'Mimi', published in 01 February 1942
-    When the customer searches for books published between 2013 and 2014
-    Then 2 books should have been found
-      And Book 1 should have the title 'Some other book'
-      And Book 2 should have the title 'One good book'
-      
-    When the customer searches for books written by 'Mimi'
-    	Then 1 books should have been found
-    	And Book 1 should have the title 'CCU for Dummies'
-    	
+Scénario: Recherche de cours par date
+	Etant donné un cours de 'CCU' dispensé par 'MIMI' qui démarre à 15h00 le 14 02 2015 et qui dure 120 minutes.
+		Lorsqu'on cherche les cours dispensés le 14 02 2015
+		Alors on doit trouver 1 cours
+		Et le cours 1 doit avoir pour matière 'CCU'
+			
+		Lorsqu'on cherche les cours dispensés le 14 01 2015
+		Alors on doit trouver 0 cours
+	
+Scénario: Recherche de matières différentes
+	Etant donné un cours de 'CCU' dispensé par 'MIMI' qui démarre à 15h00 le 14 02 2015 et qui dure 120 minutes.
+	Etant donné un cours de 'Compétition Algo' dispensé par 'Pascal Garcia' qui démarre à 13h00 le 15 02 2015 et qui dure 60 minutes.
+	Etant donné un cours de 'Sécurité' dispensé par 'Kordy' qui démarre à 13h00 le 15 02 2015 et qui dure 60 minutes.
+	
+		Lorsqu'on cherche les matières dispensées
+		
+		Alors on doit trouver 3 matières
+		Et la matière 1 doit avoir pour nom 'CCU'
+		Et la matière 2 doit avoir pour nom 'Compétition Algo'
+		
+	

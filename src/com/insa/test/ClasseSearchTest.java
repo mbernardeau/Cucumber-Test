@@ -7,6 +7,6 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features="Features/Scenario1.features")
-public class BookSearchTest {
-	
+public class ClasseSearchTest {
+
 }
